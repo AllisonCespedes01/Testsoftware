@@ -1,0 +1,24 @@
+name: Ejecutar Workflow Básico
+
+on:
+  push:
+    branches:
+      - main # Se ejecuta cuando se hace push a la rama main
+  pull_request:
+    branches:
+      - main # Se ejecuta cuando se abre un pull request a la rama main
+
+jobs:
+  saludar:
+    runs-on: ubuntu-latest # Define el sistema operativo donde se ejecutará el job
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4 # Paso para clonar tu repositorio
+
+    - name: Imprimir un mensaje de saludo
+      run: |
+        echo "¡Hola desde GitHub Actions!"
+        echo "Este es un workflow básico ejecutándose."
+        echo "El repositorio es: ${{ github.repository }}"
+        echo "El commit es: ${{ github.sha }}"
